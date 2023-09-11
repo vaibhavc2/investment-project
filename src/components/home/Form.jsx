@@ -4,10 +4,10 @@ import resetHandler from "../../functions/resetHandler";
 import inputChangeHandler from "../../functions/inputChangeHandler";
 
 const Form = () => {
-  const [currentSavings, setCurrentSavings] = useState(0);
-  const [yearlyContribution, setYearlyContribution] = useState(0);
-  const [expectedReturn, setExpectedReturn] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [currentSavings, setCurrentSavings] = useState(10000);
+  const [yearlyContribution, setYearlyContribution] = useState(1000);
+  const [expectedReturn, setExpectedReturn] = useState(12);
+  const [duration, setDuration] = useState(10);
 
   return (
     <>
