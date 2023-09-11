@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import submitHandler from "../../functions/submitHandler";
-import resetHandler from "../../functions/resetHandler";
 import inputChangeHandler from "../../functions/inputChangeHandler";
 
+const initialUserInput = {
+  "current-savings": 10000,
+  "yearly-contribution": 1000,
+  "expected-return": 12,
+  duration: 10
+};
+
 const Form = () => {
-  const [currentSavings, setCurrentSavings] = useState(10000);
-  const [yearlyContribution, setYearlyContribution] = useState(1000);
-  const [expectedReturn, setExpectedReturn] = useState(12);
-  const [duration, setDuration] = useState(10);
+  const [userInput, setUserInput] = useState(initialUserInput);
+
+  const resetHandler = () => {
+    setUserInput(initialUserInput);
+  };
 
   return (
     <>
@@ -19,8 +26,13 @@ const Form = () => {
               type="number"
               id="current-savings"
               onChange={(e) =>
-                inputChangeHandler("current-savings", e.target.value)
+                inputChangeHandler(
+                  "current-savings",
+                  e.target.value,
+                  setUserInput
+                )
               }
+              value={userInput["current-savings"]}
             />
           </p>
           <p>
@@ -29,8 +41,13 @@ const Form = () => {
               type="number"
               id="yearly-contribution"
               onChange={(e) =>
-                inputChangeHandler("yearly-contribution", e.target.value)
+                inputChangeHandler(
+                  "yearly-contribution",
+                  e.target.value,
+                  setUserInput
+                )
               }
+              value={userInput["yearly-contribution"]}
             />
           </p>
         </div>
@@ -43,8 +60,13 @@ const Form = () => {
               type="number"
               id="expected-return"
               onChange={(e) =>
-                inputChangeHandler("expected-return", e.target.value)
+                inputChangeHandler(
+                  "expected-return",
+                  e.target.value,
+                  setUserInput
+                )
               }
+              value={userInput["expected-return"]}
             />
           </p>
           <p>
@@ -52,7 +74,10 @@ const Form = () => {
             <input
               type="number"
               id="duration"
-              onChange={(e) => inputChangeHandler("duration", e.target.value)}
+              onChange={(e) =>
+                inputChangeHandler("duration", e.target.value, setUserInput)
+              }
+              value={userInput.duration}
             />
           </p>
         </div>
