@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import submitHandler from "../../functions/submitHandler";
 import inputChangeHandler from "../../functions/inputChangeHandler";
 
 const initialUserInput = {
@@ -9,11 +8,17 @@ const initialUserInput = {
   duration: 10
 };
 
-const Form = () => {
+const Form = ({ onCalculate }) => {
   const [userInput, setUserInput] = useState(initialUserInput);
 
   const resetHandler = () => {
     setUserInput(initialUserInput);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    onCalculate(userInput);
   };
 
   return (

@@ -1,11 +1,8 @@
 const calculateHandler = (userInput) => {
-  // Should be triggered when form is submitted
-  // You might not directly want to bind it to the submit event on the form though...
-
   const yearlyData = []; // per-year results
 
-  let currentSavings = +userInput["current-savings"]; // feel free to change the shape of this input object!
-  const yearlyContribution = +userInput["yearly-contribution"]; // as mentioned: feel free to change the shape...
+  let currentSavings = +userInput["current-savings"];
+  const yearlyContribution = +userInput["yearly-contribution"];
   const expectedReturn = +userInput["expected-return"] / 100;
   const duration = +userInput["duration"];
 
