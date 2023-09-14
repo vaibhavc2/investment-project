@@ -2,13 +2,14 @@ import React from "react";
 import { initialUserInput } from "./Form";
 import { v4 as uuidv4 } from "uuid";
 import { currencyFormatFunction } from "../../functions/currencyFormatter";
+import { result } from "../../styles/ResultsTable.module.css";
 
 const ResultsTable = ({ yearlyData }) => {
   const initialInvestment = initialUserInput["current-savings"];
 
   return (
     <>
-      <table className="result">
+      <table className={result}>
         <thead>
           <tr>
             <th>Year</th>
