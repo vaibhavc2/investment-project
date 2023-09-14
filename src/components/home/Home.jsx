@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Form from "./Form";
-import Result from "./Result";
+import ResultsTable from "./ResultsTable";
 
 const Home = () => {
-  const [results, setResults] = useState(null);
+  const [userInput, setUserInput] = useState(null);
 
   const calculateHandler = (userInput) => {
-    const yearlyData = []; // per-year results
+    setUserInput(userInput);
+  };
 
-    let currentSavings = +userInput["current-savings"];
-    const yearlyContribution = +userInput["yearly-contribution"];
-    const expectedReturn = +userInput["expected-return"] / 100;
-    const duration = +userInput["duration"];
+  const yearlyData = [];
+
+  if (userInput) {
+    let currentSavings = userInput["current-savings"];
+    const yearlyContribution = userInput["yearly-contribution"];
+    const expectedReturn = userInput["expected-return"] / 100;
+    const duration = userInput["duration"];
 
     for (let i = 0; i < duration; i++) {
       const yearlyInterest = currentSavings * expectedReturn;
@@ -24,9 +28,7 @@ const Home = () => {
         yearlyContribution: yearlyContribution
       });
     }
-    // console.log(yearlyData);
-    setResults(yearlyData);
-  };
+  }
 
   return (
     <>
@@ -35,7 +37,9 @@ const Home = () => {
         <Form onCalculate={calculateHandler} />
         {/* Todo: Show below table conditionally (only once result data is available) */}
         {/* Show fallback text if no data is available */}
-        <Result yearlyData={results} />
+
+        {!userInput && <p>No Investment calculated yet!</p>}
+        {userInput && <ResultsTable yearlyData={yearlyData} />}
       </div>
     </>
   );

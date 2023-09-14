@@ -100,3 +100,4 @@ const Form = ({ onCalculate }) => {
 };
 
 export default Form;
+export { initialUserInput };
