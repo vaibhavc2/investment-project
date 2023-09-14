@@ -13,10 +13,11 @@ const Home = () => {
   const yearlyData = [];
 
   if (userInput) {
-    let currentSavings = userInput["current-savings"];
-    const yearlyContribution = userInput["yearly-contribution"];
-    const expectedReturn = userInput["expected-return"] / 100;
-    const duration = userInput["duration"];
+    let currentSavings = +userInput["current-savings"];
+    const yearlyContribution = +userInput["yearly-contribution"];
+    const expectedReturn = +userInput["expected-return"] / 100;
+    const duration = +userInput["duration"];
+    // The + sign before userInput is used to typecast or convert the values retrieved from the userInput object to numbers.
 
     for (let i = 0; i < duration; i++) {
       const yearlyInterest = currentSavings * expectedReturn;

@@ -1,6 +1,7 @@
 import React from "react";
 import { initialUserInput } from "./Form";
 import { v4 as uuidv4 } from "uuid";
+import { currencyFormatFunction } from "../../functions/currencyFormatter";
 
 const ResultsTable = ({ yearlyData }) => {
   const initialInvestment = initialUserInput["current-savings"];
@@ -21,15 +22,21 @@ const ResultsTable = ({ yearlyData }) => {
           {yearlyData.map((i) => (
             <tr key={uuidv4()}>
               <td key={uuidv4()}>{i.year}</td>
-              <td key={uuidv4()}>{i.savingsEndOfYear}</td>
-              <td key={uuidv4()}>{i.yearlyInterest}</td>
               <td key={uuidv4()}>
-                {i.savingsEndOfYear -
-                  initialInvestment -
-                  i.yearlyContribution * i.year}
+                {currencyFormatFunction(i.savingsEndOfYear)}
+              </td>
+              <td key={uuidv4()}>{currencyFormatFunction(i.yearlyInterest)}</td>
+              <td key={uuidv4()}>
+                {currencyFormatFunction(
+                  i.savingsEndOfYear -
+                    initialInvestment -
+                    i.yearlyContribution * i.year
+                )}
               </td>
               <td key={uuidv4()}>
-                {initialInvestment + i.yearlyContribution * i.year}
+                {currencyFormatFunction(
+                  initialInvestment + i.yearlyContribution * i.year
+                )}
               </td>
             </tr>
           ))}
